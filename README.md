@@ -1,15 +1,14 @@
-# Micro-Insurance System - Frontend
+# Crowdfunding Platform - Frontend
 
-This is the frontend for the **Micro-Insurance System** built on the **Aptos Blockchain**. The platform enables users to purchase micro-insurance policies, request claims, and receive payouts, with all actions securely managed via smart contracts.
+This is the frontend for the **Crowdfunding Platform** built on the **Aptos Blockchain**. The platform allows project creators to raise funds for their projects and backers to support projects by donating Aptos native tokens (**APT**). All interactions with the platform are securely managed through smart contracts.
 
 ## Key Features
 
-- **View Available Policies**: Users can browse through a list of pre-created insurance policies available for purchase.
-- **Purchase Insurance Policies**: Users can purchase micro-insurance policies directly using Aptos native token (**APT**).
-- **Claim Requests**: Users can request insurance claims after purchasing a policy.
-- **Claim Verification**: Claims are reviewed and verified by policy creators.
-- **Payouts**: Verified claims trigger payouts of the specified claimable amount directly to the user.
-- **Policy Management**: Policy creators can view and manage policies and verify customer claims.
+- **Create Crowdfunding Projects**: Users can create and manage projects with funding goals and detailed descriptions.
+- **Back Projects**: Backers can donate Aptos tokens to support projects they believe in.
+- **View Projects**: All users can browse and view the list of active crowdfunding projects.
+- **Track Donations**: Backers can view their donation history, and creators can track funds raised for their projects.
+- **Project Management**: Project creators can create and manage their crowdfunding campaigns.
 
 ## Prerequisites
 
@@ -26,7 +25,8 @@ Before running the project, ensure you have the following installed:
 First, clone the project repository to your local machine:
 
 ```bash
-cd micro-insurance-system
+git clone https://github.com/your-repo/crowdfunding-platform.git
+cd crowdfunding-platform
 ```
 
 ### 2. Install Dependencies
@@ -48,7 +48,7 @@ yarn install
 You need to configure the environment variables for the frontend to interact with the Aptos blockchain. Create a `.env` file in the project root and add the following variables:
 
 ```bash
-PROJECT_NAME=MicroInsuranceSystem
+PROJECT_NAME=CrowdfundingPlatform
 VITE_APP_NETWORK=testnet
 VITE_MODULE_ADDRESS=0x<your_contract_address>
 ```
@@ -75,40 +75,40 @@ The app will be available at `http://localhost:5173`.
 
 ### 1. Connect Wallet
 
-Upon opening the application, you'll be prompted to connect your Aptos wallet (e.g., Petra Wallet). This allows you to interact with the blockchain and perform operations such as purchasing policies and requesting claims.
+Upon opening the application, you'll be prompted to connect your Aptos wallet (e.g., Petra Wallet). This allows you to interact with the blockchain and perform actions such as creating projects or backing existing ones.
 
-### 2. View Available Policies
+### 2. Create a Project
 
-Users can browse the **Policies** section to view the available insurance policies. Each policy will display details such as:
+To create a new crowdfunding project:
 
-- Policy description
-- Premium amount
-- Maximum claimable amount
-- Type (e.g., health, auto)
-- Yearly or one-time payment options
+- Go to the **Create Project** section.
+- Enter the project title, description, and the funding goal in Aptos tokens (**APT**).
+- Submit the form, and the project will be created on the Aptos blockchain and appear in the list of active projects.
 
-### 3. Purchase Policy
+### 3. Back a Project
 
-To purchase an insurance policy:
+To back an existing project:
 
-- Select the policy you want to purchase.
-- The platform will prompt you to pay the premium amount in **APT** via your connected Aptos wallet.
-- Once purchased, the policy will be added to your list of active policies.
+- Browse the list of available projects in the **Projects** section.
+- Select a project you want to back and enter the amount of **APT** tokens you'd like to donate.
+- Confirm the transaction via your connected Aptos wallet. The donation will be sent directly to the project creator's wallet.
 
-### 4. Request Claim
+### 4. View Project Details
 
-To request an insurance claim:
+Users can view detailed information about each project, including:
 
-- Navigate to **My Policies** and select the policy you want to claim.
-- Click on **Request Claim**. The request will be submitted to the policy creator for verification.
+- Project title and description
+- Funding goal and the total amount raised so far
+- Project creator details
+- List of backers (optional)
 
-### 5. Claim Verification and Payout
+### 5. Track Donations
 
-For policy creators, after receiving a claim request:
+As a backer, you can navigate to **My Donations** to view the projects you've supported and the amounts you've contributed.
 
-- Go to **Manage Policies** and select the relevant policy.
-- Review the claim request and click **Verify** if the claim is legitimate.
-- Once verified, the claim will be automatically paid out to the customer.
+### 6. Manage Projects
+
+As a project creator, you can view and manage your projects by navigating to the **My Projects** section. This section allows you to track your projects' funding progress and see details about each donation.
 
 ## Scripts
 
@@ -128,4 +128,4 @@ The project uses the following key dependencies:
 
 ## Conclusion
 
-This frontend allows users to seamlessly interact with the **Micro-Insurance System**, providing a decentralized way to manage policies, request claims, and handle payouts. With a user-friendly interface and blockchain security, users and policy creators can manage their insurance needs transparently.
+This frontend enables users to seamlessly create and back crowdfunding projects on the Aptos blockchain. By using a decentralized approach, the platform ensures secure fund transfers, transparent project management, and easy tracking of donations. The user-friendly interface simplifies the crowdfunding process for both project creators and backers.

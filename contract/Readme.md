@@ -1,121 +1,115 @@
-# MicroInsuranceSystem Smart Contract
+# CrowdfundingPlatform - Smart Contract
 
-## Overview
-
-This Move module provides a decentralized micro-insurance system, enabling users to purchase insurance policies, claim payouts, and manage insurance policies through smart contracts on the Aptos blockchain. The module features global storage for policies and includes essential insurance functionalities such as policy creation, premium payments, claim requests, verification, and payouts.
+This is the **CrowdfundingPlatform** smart contract built on the **Aptos Blockchain**. It allows users to create crowdfunding projects, back projects with Aptos (APT) tokens, and view project details. Project creators can raise funds while backers can contribute to projects they support.
 
 ## Key Features
 
-- **Global Policy Management**: Stores all policies under a single global address.
-- **Policy Creation**: Allows creators to issue new policies with parameters like premium amount, policy type, and maximum claimable amount.
-- **Policy Purchase**: Customers can purchase a pre-defined insurance policy by paying the specified premium.
-- **Claim Process**: Insured customers can request and receive claim payouts upon verification.
-- **Claim Verification**: Policy creators verify and approve customer claims.
-- **Views for Policies**: Customers and creators can view policies based on ID, creator, or customer.
+- **Create Projects**: Users can create crowdfunding projects with a title, description, and funding goal.
+- **Back Projects**: Backers can contribute Aptos tokens to support projects.
+- **View Projects**: Anyone can view all active crowdfunding projects and their details.
+- **Track Donations**: Backers can view their donation history, and creators can track their projects' progress.
+- **Secure Transactions**: All contributions are securely transferred to the project creator's address through smart contract interactions.
 
-## Installation & Usage
+## Smart Contract Structure
 
-### 1. Initialize Global Policy System
+- **GlobalProjectCollection**: A struct that stores all crowdfunding projects and donations.
+- **Project**: Represents a crowdfunding project with attributes like the project ID, creator, title, description, funding goal, and total funds raised.
+- **Donation**: Represents a donation made to a project, including the backer's address, the project ID, amount donated, and timestamp.
 
-Before creating or managing policies, the global policy system must be initialized by invoking:
+## Functions
 
-```move
-init_global_policy_system(account: &signer)
+### Initialization
+
+- **`init_platform(account: &signer)`**  
+  Initializes the global collection of projects and donations. This function must be called once to set up the platform.
+
+### Project Management
+
+- **`create_project(account: &signer, title: String, description: String, goal: u64)`**  
+  Allows a user to create a new crowdfunding project by specifying the project title, description, and funding goal.
+
+### Backing Projects
+
+- **`back_project(account: &signer, project_id: u64, amount: u64)`**  
+  Allows a user to back a specific project by its project ID and contribute Aptos tokens. The contribution is transferred directly to the project creator's address.
+
+### Viewing Projects
+
+- **`view_all_projects(): vector<Project>`**  
+  Returns a list of all crowdfunding projects.
+
+- **`view_project_by_id(project_id: u64): Project`**  
+  Returns the details of a specific project by its project ID.
+
+- **`view_projects_by_creator(creator: address): vector<Project>`**  
+  Returns all projects created by a specific creator (project owner).
+
+### Viewing Donations
+
+- **`view_donations_by_backer(backer: address): vector<Donation>`**  
+  Returns all donations made by a specific backer.
+
+## Errors
+
+- **`ERR_PROJECT_NOT_FOUND`**: Raised when attempting to interact with a non-existent project.
+- **`ERR_NO_PROJECTS`**: Raised when there are no projects in the system.
+- **`ERR_ALREADY_INITIALIZED`**: Raised if the platform is already initialized.
+
+## Setup Instructions
+
+### Prerequisites
+
+- **Aptos CLI**: For deploying and interacting with the contract on the Aptos blockchain.
+- **Aptos Wallet**: For performing transactions on the blockchain.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-repo/crowdfunding-platform.git
+cd crowdfunding-platform
 ```
 
-This initializes a collection that will store all policies.
+### 2. Deploy the Contract
 
-### 2. Create a New Policy
+Ensure you have set up your Aptos environment. Then deploy the contract using the following steps:
 
-Creators can define new policies with attributes such as description, premium amount, payment frequency, and claimable limits:
+- Initialize your Aptos account if you haven't done so already:
+  ```bash
+  aptos init
+  ```
+- Publish the contract:
+  ```bash
+  aptos move publish --package-dir path/to/your/contract
+  ```
 
-```move
-create_policy(
-  account: &signer,
-  description: String,
-  premium_amount: u64,
-  yearly: bool,
-  max_claimable: u64,
-  type_of_policy: String
-)
+### 3. Initialize the Platform
+
+After deploying, call the `init_platform` function to initialize the crowdfunding platform:
+
+```bash
+aptos move run --function-id <deployed_address>::CrowdfundingPlatform::init_platform --args address:<account_address>
 ```
 
-### 3. Purchase a Policy
+## Example Usage
 
-Users (customers) can purchase a policy by its unique ID. This action transfers the premium amount to the policy creator:
+### 1. Create a New Project
 
-```move
-purchase_policy(account: &signer, policy_id: u64)
+```bash
+aptos move run --function-id <deployed_address>::CrowdfundingPlatform::create_project --args address:<creator_address> string:<title> string:<description> u64:<goal_amount>
 ```
 
-### 4. Request a Claim
+### 2. Back a Project
 
-After purchasing a policy, customers can request a claim under the policy:
-
-```move
-request_claim(account: &signer, policy_id: u64)
+```bash
+aptos move run --function-id <deployed_address>::CrowdfundingPlatform::back_project --args address:<backer_address> u64:<project_id> u64:<amount>
 ```
 
-### 5. Verify a Claim
+### 3. View All Projects
 
-The policy creator must verify and approve a claim request:
-
-```move
-verify_claim(account: &signer, policy_id: u64, customer: address)
+```bash
+aptos move run --function-id <deployed_address>::CrowdfundingPlatform::view_all_projects
 ```
 
-### 6. Payout for a Claim
+## Conclusion
 
-Once a claim is verified, the policy creator can initiate the payout process, transferring the claimable amount to the customer:
-
-```move
-payout_claim(account: &signer, policy_id: u64)
-```
-
-### 7. View All Policies
-
-Retrieve a list of all policies in the system:
-
-```move
-view_all_policies(): vector<Policy>
-```
-
-### 8. View Policy by ID
-
-Retrieve a specific policy by its ID:
-
-```move
-view_policy_by_id(policy_id: u64): Policy
-```
-
-### 9. View Policies by Creator
-
-Retrieve all policies created by a specific creator:
-
-```move
-view_policies_by_creator(creator: address): vector<Policy>
-```
-
-### 10. View Policies by Customer
-
-Retrieve all policies a specific customer has purchased:
-
-```move
-view_policies_by_customer(customer: address): vector<Policy>
-```
-
-## Error Codes
-
-- `ERR_POLICY_NOT_FOUND (1)`: The specified policy does not exist.
-- `ERR_NOT_CUSTOMER (2)`: The caller is not a customer of the policy.
-- `ERR_PREMIUM_NOT_PAID (3)`: The premium has not been paid for the policy.
-- `ERR_CLAIM_ALREADY_MADE (4)`: The claim has already been made.
-- `ERR_NO_POLICIES (5)`: No policies exist in the system.
-- `ERR_ALREADY_INITIALIZED (6)`: The global policy system has already been initialized.
-- `ERR_CLAIM_NOT_ALLOWED (7)`: The claim is not allowed (e.g., not verified).
-- `ERR_UNAUTHORIZED (8)`: The caller is not authorized to perform the action.
-
-## Dependencies
-
-- **AptosCoin**: The contract utilizes the native Aptos coin for premium payments and claim payouts.
-- **Std Modules**: Includes standard modules like `signer`, `string`, `vector`, and `coin`.
+The **CrowdfundingPlatform** smart contract provides a decentralized and transparent way for users to create, back, and manage crowdfunding projects on the Aptos blockchain. By using secure smart contracts, all contributions and funds are transparently managed, ensuring trust and reliability.
