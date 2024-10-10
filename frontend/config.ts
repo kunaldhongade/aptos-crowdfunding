@@ -5,23 +5,23 @@ import Placeholder3 from "@/assets/placeholders/bear-3.png";
 export const config: Config = {
   // Removing one or all of these socials will remove them from the page
   socials: {
-    twitter: "https://twitter.com/kunaldhongade",
-    discord: "https://discord.com",
-    homepage: "https://kunaldhongade.vercel.app",
+    twitter: "https://twitter.com/crowdfunding_project",
+    discord: "https://discord.com/invite/crowdfunding",
+    homepage: "https://crowdfundingproject.com",
   },
 
   defaultCollection: {
-    name: "Lorem Ipsum",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue convallis augue in pharetra.",
+    name: "Crowdfunding Collection",
+    description: "Explore the unique and innovative projects on our crowdfunding platform.",
     image: Placeholder1,
   },
 
   ourStory: {
-    title: "Our Story",
-    subTitle: "Innovative Insurance Platform on Aptos",
+    title: "Our Mission",
+    subTitle: "Empowering Ideas through Crowdfunding",
     description:
-      "Our Insurance Platform Offers Various Insurance Products to Protect Your Assets. We Provide a Secure and Transparent Platform for Buying and Selling Insurance. Join Our Community to Get Started!",
-    discordLink: "https://discord.com",
+      "At our crowdfunding platform, we are committed to supporting innovative ideas and projects. Join us in empowering creators and bringing their visions to life.",
+    discordLink: "https://discord.com/invite/crowdfunding",
     images: [Placeholder1, Placeholder2, Placeholder3],
   },
 
@@ -29,70 +29,67 @@ export const config: Config = {
     title: "Our Team",
     members: [
       {
-        name: "Kunal",
-        role: "Blockchain Developer",
+        name: "Alice",
+        role: "Project Lead",
         img: Placeholder1,
         socials: {
-          twitter: "https://twitter.com/kunaldhongade",
+          twitter: "https://twitter.com/alice_lead",
         },
       },
       {
-        name: "Soham",
-        role: "Marketing Specialist",
+        name: "Bob",
+        role: "Marketing Manager",
         img: Placeholder2,
       },
       {
-        name: "Amrita",
+        name: "Charlie",
         role: "Community Manager",
         img: Placeholder3,
         socials: {
-          twitter: "https://twitter.com",
+          twitter: "https://twitter.com/charlie_community",
         },
       },
     ],
   },
 
   faqs: {
-    title: "F.A.Q.",
+    title: "Frequently Asked Questions",
 
     questions: [
       {
-        title: "What is Micro Insurance?",
+        title: "What is our crowdfunding platform?",
         description:
-          "Micro insurance is a type of insurance designed to be affordable for low-income individuals or groups, providing coverage for specific risks such as health, life, or property.",
+          "Our platform is designed to help creators raise funds for their innovative projects through community support.",
       },
       {
-        title: "How do I purchase an insurance policy?",
-        description: `To purchase an insurance policy, follow these steps:
-        Navigate to the "Buy Insurance" section in the app.
-        Select the type of insurance you need.
-        Fill in the required details and submit your application.
-        Make the payment through the available payment methods.
-        Confirm the transaction in your connected wallet.`,
+        title: "How do I start a project?",
+        description: `To start a project, follow these steps:
+        Visit our homepage and create an account.
+        Submit your project proposal for review.
+        Launch your campaign and start raising funds.`,
       },
       {
-        title: "What types of insurance products are available?",
+        title: "How can I support a project?",
         description:
-          "We offer a variety of insurance products including health insurance, life insurance, and property insurance. Each product is tailored to meet the specific needs of our customers.",
+          "You can support a project by visiting its campaign page and making a contribution. Share the project with your network to help it gain more visibility.",
       },
       {
-        title: "How can I file a claim?",
-        description: `To file a claim, follow these steps:
-        Navigate to the "File a Claim" section in the app.
-        Provide the necessary details about the incident.
-        Submit any required documentation.
-        Our team will review your claim and get back to you with the next steps.`,
+        title: "What are the benefits of crowdfunding?",
+        description: `Crowdfunding allows creators to:
+        Validate their ideas with real-world feedback.
+        Raise funds without giving up equity.
+        Build a community of supporters and advocates.`,
       },
       {
-        title: "What should I do if I encounter an issue with my policy?",
-        description: `If you encounter an issue with your policy, consider the following:
-        Ensure that all your details are correctly entered.
-        Refresh the app and check your policy details again.
-        Contact our support team for further assistance.`,
+        title: "Where can I find more information?",
+        description: `For more information, visit our website and check out the "Help" section. You can also join our community on Discord for support and updates.`,
       },
       {
-        title: "How can I view my policy details?",
-        description: `You can view your policy details by navigating to the "My Policies" section of the app. This section will display all your active policies, including coverage details, premium amounts, and expiration dates.`,
+        title: "How can I report an issue or bug?",
+        description: `To report an issue or bug, please:
+        Visit our support page.
+        Submit a detailed report.
+        Our team will review and address it promptly.`,
       },
     ],
   },
