@@ -1,131 +1,189 @@
-# Crowdfunding Platform - Frontend
+# 🚀 Crowdfunding Platform - Frontend
 
-This is the frontend for the **Crowdfunding Platform** built on the **Aptos Blockchain**. The platform allows project creators to raise funds for their projects and backers to support projects by donating Aptos native tokens (**APT**). All interactions with the platform are securely managed through smart contracts.
+Welcome to the **Crowdfunding Platform** frontend, a decentralized application built on the **Aptos Blockchain**. This platform empowers project creators to raise funds transparently, while backers can contribute Aptos tokens (**APT**) directly to support innovative ideas. All operations, from project creation to fund management, are handled seamlessly through smart contracts deployed on the blockchain.
 
-## Key Features
+---
 
-- **Create Crowdfunding Projects**: Users can create and manage projects with funding goals and detailed descriptions.
-- **Back Projects**: Backers can donate Aptos tokens to support projects they believe in.
-- **View Projects**: All users can browse and view the list of active crowdfunding projects.
-- **Track Donations**: Backers can view their donation history, and creators can track funds raised for their projects.
-- **Project Management**: Project creators can create and manage their crowdfunding campaigns.
+## 🔗 Links
 
-## Prerequisites
+- **Live Demo**: [Crowdfunding Platform](https://aptos-crowdfunding.vercel.app/)
+- **Smart Contract Explorer**: [Aptos Explorer](https://explorer.aptoslabs.com/account/0x17c2ceb4f5f7069a4c48dccd7405895dd8ef5d7660b8e77d9d16176b5a6b90f6/modules/code/CrowdfundingPlatform?network=testnet)
 
-Before running the project, ensure you have the following installed:
+---
 
-- **Node.js** (version 16 or higher)
+## ✨ Key Features
+
+- **Create Campaigns**: Project creators can launch campaigns with a title, description, and funding goal.
+- **Back Projects**: Backers contribute Aptos tokens directly to projects they believe in.
+- **Live Progress Tracking**: Campaigns display real-time progress toward their funding goals with **progress bars**.
+- **Transparent Donations**: Backers can track their contributions, and creators can view incoming donations.
+- **Wallet Integration**: Seamless Aptos wallet connection for easy transactions.
+
+---
+
+## 📋 Prerequisites
+
+Make sure you have the following installed:
+
+- **Node.js** (v16 or higher)
 - **npm** or **yarn**
-- **Aptos Wallet** extension (e.g., Petra Wallet) for blockchain interactions
+- **Aptos Wallet** (e.g., Petra Wallet) for blockchain interactions
 
-## Setup Instructions
+---
 
-### 1. Clone the Repository
+## ⚙️ Setup Instructions
 
-First, clone the project repository to your local machine:
+### 1. Move to Folder
 
 ```bash
-git clone https://github.com/your-repo/crowdfunding-platform.git
 cd crowdfunding-platform
 ```
 
 ### 2. Install Dependencies
 
-Install the necessary dependencies for the project using **npm** or **yarn**:
-
 ```bash
 npm install
 ```
 
-or
-
-```bash
-yarn install
-```
-
 ### 3. Configure Environment Variables
 
-You need to configure the environment variables for the frontend to interact with the Aptos blockchain. Create a `.env` file in the project root and add the following variables:
+Create a `.env` file in the project root and add the following variables:
 
 ```bash
-PROJECT_NAME=CrowdfundingPlatform
 VITE_APP_NETWORK=testnet
-VITE_MODULE_ADDRESS=0x<your_contract_address>
+VITE_MODULE_ADDRESS=0x17c2ceb4f5f7069a4c48dccd7405895dd8ef5d7660b8e77d9d16176b5a6b90f6
 ```
 
-Adjust the `NODE_URL` and `FAUCET_URL` if you are using **Testnet** or **Mainnet** instead of Devnet.
+Update the **module address** if you deploy your contract to a new address.
 
 ### 4. Run the Development Server
-
-Start the development server by running:
 
 ```bash
 npm run dev
 ```
 
-or
-
-```bash
-yarn run dev
-```
-
 The app will be available at `http://localhost:5173`.
 
-## How to Use the Platform
+### 5. Deploy the Smart Contract
+
+To deploy the smart contract:
+
+1.  Install **Aptos CLI**.
+2.  Update the **Move.toml** file with your wallet address:
+
+    - Add you Wallet Address from Petra here
+
+    ```bash
+    sys_addrx = "0xca10b0176c34f9a8315589ff977645e04497814e9753d21f7d7e7c3d83aa7b57"
+    ```
+
+    - Add your Account addr here for Deployment
+
+    ```bash
+    my_addrx = "17c2ceb4f5f7069a4c48dccd7405895dd8ef5d7660b8e77d9d16176b5a6b90f6"
+    ```
+
+3.  Create your new Address for Deployment
+
+    ```bash
+    aptos init
+    ```
+
+4.  Compile and publish the contract:
+
+    ```bash
+    aptos move compile
+    aptos move publish
+    ```
+
+---
+
+## 🛠 How to Use the Platform
 
 ### 1. Connect Wallet
 
-Upon opening the application, you'll be prompted to connect your Aptos wallet (e.g., Petra Wallet). This allows you to interact with the blockchain and perform actions such as creating projects or backing existing ones.
+Connect your Aptos wallet (e.g., **Petra Wallet**) to interact with the platform. This allows you to create projects, back campaigns, and track your donations.
 
-### 2. Create a Project
+### 2. Create a Campaign
 
-To create a new crowdfunding project:
+1. Go to the **Create Campaign** section.
+2. Provide the title, description, and funding goal.
+3. Submit the form to create the campaign. It will appear in the **Projects** section.
 
-- Go to the **Create Project** section.
-- Enter the project title, description, and the funding goal in Aptos tokens (**APT**).
-- Submit the form, and the project will be created on the Aptos blockchain and appear in the list of active projects.
+### 3. Back a Campaign
 
-### 3. Back a Project
-
-To back an existing project:
-
-- Browse the list of available projects in the **Projects** section.
-- Select a project you want to back and enter the amount of **APT** tokens you'd like to donate.
-- Confirm the transaction via your connected Aptos wallet. The donation will be sent directly to the project creator's wallet.
+1. Browse campaigns in the **Projects** section.
+2. Choose a project and enter the amount of **APT** tokens to donate.
+3. Confirm the transaction via your wallet.
 
 ### 4. View Project Details
 
-Users can view detailed information about each project, including:
+Campaign details include:
 
-- Project title and description
-- Funding goal and the total amount raised so far
-- Project creator details
-- List of backers (optional)
+- **Title**, **description**, and **funding goal**
+- **Creator address** and **progress bar** tracking funds raised
+- **Backers list** (if available)
 
 ### 5. Track Donations
 
-As a backer, you can navigate to **My Donations** to view the projects you've supported and the amounts you've contributed.
+Go to **My Donations** to view a history of your contributions.
 
-### 6. Manage Projects
+### 6. Manage Campaigns
 
-As a project creator, you can view and manage your projects by navigating to the **My Projects** section. This section allows you to track your projects' funding progress and see details about each donation.
+Project creators can track their campaigns by navigating to the **My Campaigns** section, where they can monitor the progress and view donations received.
 
-## Scripts
+---
 
-- **`npm run dev`**: Starts the development server.
-- **`npm run build`**: Builds the project for production.
-- **`npm test`**: Runs unit tests.
+## 📊 Scripts
 
-## Dependencies
+- **`npm run dev`**: Start the development server.
 
-The project uses the following key dependencies:
+---
 
-- **React**: UI library for building user interfaces.
-- **TypeScript**: Typed superset of JavaScript for type-safe development.
-- **Aptos SDK**: JavaScript/TypeScript SDK to interact with the Aptos blockchain.
-- **Ant Design / Tailwind CSS**: For responsive UI design and layout.
-- **Petra Wallet Adapter**: To connect and interact with the Aptos wallet.
+## 🔍 Dependencies
 
-## Conclusion
+- **React**: Library for building UIs.
+- **TypeScript**: Type-safe JavaScript for better development experience.
+- **Aptos SDK**: JavaScript SDK for blockchain interaction.
+- **Ant Design / Tailwind CSS**: Modern UI design and responsive layouts.
+- **Petra Wallet Adapter**: For Aptos wallet connection.
 
-This frontend enables users to seamlessly create and back crowdfunding projects on the Aptos blockchain. By using a decentralized approach, the platform ensures secure fund transfers, transparent project management, and easy tracking of donations. The user-friendly interface simplifies the crowdfunding process for both project creators and backers.
+---
+
+## 📚 Available View Functions
+
+- **View All Campaigns**: Displays a public list of all active campaigns.
+- **View Campaigns by Creator**: Shows all campaigns created by a specific wallet.
+- **View Donations by Address**: Lists all donations made by a specific user.
+
+---
+
+## 🛡 Security and Transparency
+
+- **Smart Contracts** handle all fund transfers directly between backers and creators.
+- **No Intermediaries**: Donations go straight to the creator’s wallet upon confirmation.
+- **Progress Tracking**: Backers can view the funding progress in real-time.
+
+---
+
+## 🌐 Common Issues and Solutions
+
+1. **Wallet Connection Errors**: Ensure that the wallet extension is installed and active.
+2. **RPC Rate Limits**: Use **private RPC nodes** to avoid request limits on public RPCs.
+3. **Transaction Failures**: Verify that the wallet has sufficient balance and correct permissions.
+
+---
+
+## 🚀 Scaling and Deployment
+
+If deploying to **Vercel**, you might encounter **RPC request limits**. Consider these solutions:
+
+- Use **third-party RPC providers** like **Alchemy** or **QuickNode**.
+- Implement **request throttling** to reduce RPC load.
+- Use **WebSockets** for real-time updates.
+
+---
+
+## 🎉 Conclusion
+
+The **Crowdfunding Platform** offers a decentralized way for creators to raise funds transparently and securely. With smart contracts ensuring trust, backers can support innovative projects without intermediaries. The **user-friendly interface** allows seamless interaction with campaigns, making it easier than ever to contribute to and manage crowdfunding efforts.
